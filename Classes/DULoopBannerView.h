@@ -11,7 +11,6 @@
 IB_DESIGNABLE
 @interface DULoopBannerView : UIScrollView
 
-
 @property (nonatomic) IBInspectable NSInteger pageNumber;
 
 @end
