@@ -31,6 +31,9 @@
                             <constraint firstItem="eXT-Yx-zYd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nAC-CX-OL6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="banner" destination="eXT-Yx-zYd" id="ub8-Ym-oY3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

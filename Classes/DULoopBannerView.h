@@ -11,6 +11,7 @@
 IB_DESIGNABLE
 @interface DULoopBannerView : UIScrollView
 
+@property (nonatomic, copy) NSArray *bannerData;
 @property (nonatomic) IBInspectable NSInteger pageNumber;
 
 @end
