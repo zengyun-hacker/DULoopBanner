@@ -47,7 +47,6 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     self.scrollView.clipsToBounds = NO;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.backgroundColor = [UIColor grayColor];
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.delegate = self;
     self.lastScrollOffset = 0;
