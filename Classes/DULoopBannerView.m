@@ -10,7 +10,7 @@
 #import "UIImageView+setImage.h"
 #import "View+MASAdditions.h"
 
-static CGFloat IMAGE_INSET = 0;
+static CGFloat IMAGE_INSET = 5;
 static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectFit;
 
 @interface DULoopBannerView () <UIScrollViewDelegate>
@@ -28,7 +28,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 - (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor grayColor];
+        self.backgroundColor = [UIColor lightGrayColor];
         [self setupScrollView];
         [self setupPageControl];
         self.bannerData = bannerData;
@@ -47,6 +47,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     self.scrollView.clipsToBounds = NO;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.backgroundColor = [UIColor grayColor];
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.delegate = self;
     self.lastScrollOffset = 0;
@@ -70,7 +71,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     self.pageControl.numberOfPages = self.bannerData.count;
     self.currentPage = 0;
 
-    CGFloat imageWidth = self.scrollView.frame.size.width;
+    CGFloat imageWidth = self.scrollView.frame.size.width - IMAGE_INSET;
     CGFloat imageLeft = (imageWidth + IMAGE_INSET) * 2;
     self.images = [NSMutableArray array];
     for (NSInteger index = 0; index < self.bannerData.count; ++index) {
@@ -103,7 +104,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     [self.scrollView addSubview:firstImage];
     [self.images addObject:firstImage];
 
-    UIImageView *secondImage = [[UIImageView alloc] initWithFrame:CGRectMake(firstImage.frame.origin.x + firstImage.frame.size.width, 0, imageWidth,self.scrollView.frame.size.height)];
+    UIImageView *secondImage = [[UIImageView alloc] initWithFrame:CGRectMake(firstImage.frame.origin.x + firstImage.frame.size.width + IMAGE_INSET, 0, imageWidth,self.scrollView.frame.size.height)];
     [secondImage setImageWithName:self.bannerData[1]];
     secondImage.contentMode = IMAGE_COTENT_MODE;
     [self.scrollView addSubview:secondImage];
@@ -133,7 +134,14 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
         //scroll to left
         [scrollView scrollRectToVisible:CGRectMake(currentScrollOffset + self.bannerData.count * pageSize, 0, pageSize, self.scrollView.frame.size.height) animated:NO];
     }
-    self.pageControl.currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width) - 2;
+    NSInteger currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width) - 2;
+    if (currentPage < 0) {
+        currentPage = self.bannerData.count - currentPage;
+    }
+    else if (currentPage > self.bannerData.count - 1) {
+        currentPage -= self.bannerData.count;
+    }
+    self.pageControl.currentPage = currentPage;
     self.lastScrollOffset = currentScrollOffset;
 }
 
