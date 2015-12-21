@@ -9,10 +9,11 @@
 
 #import "ViewController.h"
 #import "DULoopBannerView.h"
+#import "View+MASAdditions.h"
 
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet DULoopBannerView *banner;
+@property (weak, nonatomic) IBOutlet UIView *bannerContainer;
 
 @end
 
@@ -21,7 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    NSMutableArray *imageNames = [NSMutableArray array];
+    for (int index = 0; index < 4; ++index) {
+        NSString *imageName = [NSString stringWithFormat:@"banner%i",index];
+        [imageNames addObject:imageName];
+    }
+    DULoopBannerView *bannerView = [[DULoopBannerView alloc] initWithFrame:CGRectMake(0,100,[UIScreen mainScreen].bounds.size.width,200) withBannerData:imageNames];
+    [self.view addSubview:bannerView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,12 +38,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSMutableArray *imageNames = [NSMutableArray array];
-    for (int index = 0; index < 4; ++index) {
-        NSString *imageName = [NSString stringWithFormat:@"banner%i",index];
-        [imageNames addObject:imageName];
-    }
-    self.banner.bannerData = [NSArray arrayWithArray:imageNames];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
 }
 
 

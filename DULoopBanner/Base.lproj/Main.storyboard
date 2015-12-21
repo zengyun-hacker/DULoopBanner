@@ -17,22 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXT-Yx-zYd" customClass="DULoopBannerView">
-                                <rect key="frame" x="100" y="240" width="400" height="120"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3h-iS-yu0">
+                                <rect key="frame" x="0.0" y="190" width="600" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="ekZ-IN-ABm"/>
-                                    <constraint firstAttribute="height" constant="120" id="mGY-Pe-JpM"/>
+                                    <constraint firstAttribute="height" constant="220" id="Z6j-eu-5XK"/>
                                 </constraints>
-                            </scrollView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eXT-Yx-zYd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LL1-Vh-L2I"/>
-                            <constraint firstItem="eXT-Yx-zYd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nAC-CX-OL6"/>
+                            <constraint firstItem="m3h-iS-yu0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7QV-rK-DBa"/>
+                            <constraint firstItem="m3h-iS-yu0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HTy-Mg-wHm"/>
+                            <constraint firstItem="m3h-iS-yu0" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="zNM-Cp-eLi"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="banner" destination="eXT-Yx-zYd" id="ub8-Ym-oY3"/>
+                        <outlet property="bannerContainer" destination="m3h-iS-yu0" id="Ikp-wT-H42"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

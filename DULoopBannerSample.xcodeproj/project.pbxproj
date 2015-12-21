@@ -13,14 +13,12 @@
 		7234940CDCFD5C0586D8485A /* UIImageView+setImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 72349AAE346E8B77C223FE86 /* UIImageView+setImage.m */; };
 		7234947468E8F427A2E33510 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 723490DF77D37453FAA6F444 /* Main.storyboard */; };
 		723494CFE1BD4D92EB1365AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7234916116946C77B1784D9D /* main.m */; };
-		7234955E5644D20C83602B0D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 723494CF8123E84E9C412E7A /* Info.plist */; };
 		7234991EC03242F163833539 /* DULoopBannerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72349ABAA686BB6488AB144D /* DULoopBannerTests.m */; };
 		72349CA8C90B3A8092B33631 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72349987FC77D35F31E52C4F /* ViewController.m */; };
 		72349DB1044B663AA4DC9315 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 723499B28B6F3C45BF403534 /* LaunchScreen.storyboard */; };
-		72349E5A2B7170DCB61A837A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72349CF8998E14AFEB6D88A3 /* Info.plist */; };
-		72349EF18815D227774D49DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 723491976D5ABB5D72B2AF6F /* Info.plist */; };
 		85A0A45220D13CC3A3A2791D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EA7C0C832E682D2432AE00 /* libPods.a */; };
-		BD27F3CE1C243DC1005B0B0A /* DULoopBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD27F3CD1C243DC1005B0B0A /* DULoopBannerView.m */; };
+		BD27F3D61C26DE61005B0B0A /* DULoopBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD27F3D41C26DE61005B0B0A /* DULoopBannerView.m */; };
+		BD27F3D71C26DE61005B0B0A /* DULoopBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD27F3D51C26DE61005B0B0A /* DULoopBannerView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +59,9 @@
 		72349CFE422F19FF782EE175 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		72349F44E1D9EE36F842F5D6 /* UIImageView+setImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+setImage.h"; sourceTree = "<group>"; };
 		A6EA7C0C832E682D2432AE00 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD27F3CC1C243DC1005B0B0A /* DULoopBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DULoopBannerView.h; sourceTree = "<group>"; };
-		BD27F3CD1C243DC1005B0B0A /* DULoopBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DULoopBannerView.m; sourceTree = "<group>"; };
+		BD27F3D31C26DE61005B0B0A /* DULoopBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DULoopBannerView.h; sourceTree = "<group>"; };
+		BD27F3D41C26DE61005B0B0A /* DULoopBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DULoopBannerView.m; sourceTree = "<group>"; };
+		BD27F3D51C26DE61005B0B0A /* DULoopBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DULoopBannerView.xib; sourceTree = "<group>"; };
 		EBF7C840C7538E12C4F4DC11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,8 +168,9 @@
 		BD27F3CB1C243DA5005B0B0A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BD27F3CC1C243DC1005B0B0A /* DULoopBannerView.h */,
-				BD27F3CD1C243DC1005B0B0A /* DULoopBannerView.m */,
+				BD27F3D31C26DE61005B0B0A /* DULoopBannerView.h */,
+				BD27F3D41C26DE61005B0B0A /* DULoopBannerView.m */,
+				BD27F3D51C26DE61005B0B0A /* DULoopBannerView.xib */,
 				72349AAE346E8B77C223FE86 /* UIImageView+setImage.m */,
 				72349F44E1D9EE36F842F5D6 /* UIImageView+setImage.h */,
 			);
@@ -251,7 +251,13 @@
 		72349EA7060999A5BA61B35C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Xiao Du";
+				TargetAttributes = {
+					72349E0142084842176E7F91 = {
+						DevelopmentTeam = LMU58WLMLD;
+					};
+				};
 			};
 			buildConfigurationList = 72349FBEB9725083F88D7EC5 /* Build configuration list for PBXProject "DULoopBannerSample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -277,7 +283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72349EF18815D227774D49DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,8 +290,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7234955E5644D20C83602B0D /* Info.plist in Resources */,
 				723491498B4A351F57AAF424 /* Assets.xcassets in Resources */,
+				BD27F3D71C26DE61005B0B0A /* DULoopBannerView.xib in Resources */,
 				72349DB1044B663AA4DC9315 /* LaunchScreen.storyboard in Resources */,
 				7234947468E8F427A2E33510 /* Main.storyboard in Resources */,
 			);
@@ -296,7 +301,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72349E5A2B7170DCB61A837A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,8 +368,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				723494CFE1BD4D92EB1365AF /* main.m in Sources */,
-				BD27F3CE1C243DC1005B0B0A /* DULoopBannerView.m in Sources */,
 				723492D67649552FFC703781 /* AppDelegate.m in Sources */,
+				BD27F3D61C26DE61005B0B0A /* DULoopBannerView.m in Sources */,
 				72349CA8C90B3A8092B33631 /* ViewController.m in Sources */,
 				7234940CDCFD5C0586D8485A /* UIImageView+setImage.m in Sources */,
 			);
@@ -481,6 +485,7 @@
 			baseConfigurationReference = 4B603667F3E0531B4DCE228A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DULoopBanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.codingtime.ios.DULoopBanner;
@@ -549,6 +554,7 @@
 			baseConfigurationReference = EBF7C840C7538E12C4F4DC11 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DULoopBanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.codingtime.ios.DULoopBanner;

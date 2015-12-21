@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 IB_DESIGNABLE
-@interface DULoopBannerView : UIScrollView
+@interface DULoopBannerView : UIView
 
 @property (nonatomic, copy) NSArray *bannerData;
 @property (nonatomic) IBInspectable NSInteger pageNumber;
 
+- (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData;
 @end
