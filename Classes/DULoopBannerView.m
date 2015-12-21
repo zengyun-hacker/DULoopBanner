@@ -137,11 +137,4 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     self.lastScrollOffset = currentScrollOffset;
 }
 
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    NSLog(@"%ld",(long)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5));
-//    self.pageControl.currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5) - 2;
-//}
-
-
-
 @end
