@@ -19,7 +19,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) NSInteger lastPage;
 @property (nonatomic) CGFloat lastScrollOffset;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) UIScrollView *scrollView;
 
 @end
 
@@ -28,7 +28,9 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 - (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor grayColor];
         [self setupScrollView];
+        [self setupPageControl];
         self.bannerData = bannerData;
     }
 
@@ -44,12 +46,17 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.frame.size.width / 4,0,self.frame.size.width / 2,self.frame.size.height)];
     self.scrollView.clipsToBounds = NO;
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.backgroundColor = [UIColor grayColor];
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.delegate = self;
     self.lastScrollOffset = 0;
     [self addSubview:self.scrollView];
+}
+
+- (void)setupPageControl {
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
+    self.pageControl.frame = CGRectMake(0, self.frame.size.height - self.pageControl.frame.size.height, self.pageControl.frame.size.width, self.pageControl.frame.size.height);
+    [self addSubview:self.pageControl];
 }
 
 - (void)setupImage {
@@ -59,6 +66,9 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     for (UIView *subView in self.scrollView.subviews) {
         [subView removeFromSuperview];
     }
+
+    self.pageControl.numberOfPages = self.bannerData.count;
+    self.currentPage = 0;
 
     CGFloat imageWidth = self.scrollView.frame.size.width;
     CGFloat imageLeft = (imageWidth + IMAGE_INSET) * 2;
@@ -123,7 +133,15 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
         //scroll to left
         [scrollView scrollRectToVisible:CGRectMake(currentScrollOffset + self.bannerData.count * pageSize, 0, pageSize, self.scrollView.frame.size.height) animated:NO];
     }
+    self.pageControl.currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width) - 2;
     self.lastScrollOffset = currentScrollOffset;
 }
+
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    NSLog(@"%ld",(long)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5));
+//    self.pageControl.currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5) - 2;
+//}
+
+
 
 @end

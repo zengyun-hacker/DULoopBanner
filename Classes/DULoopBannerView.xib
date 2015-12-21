@@ -26,9 +26,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="scrollView" destination="uFs-HD-fX2" id="NRP-7h-O4h"/>
-            </connections>
             <point key="canvasLocation" x="423.5" y="152.5"/>
         </view>
     </objects>

@@ -13,6 +13,7 @@ IB_DESIGNABLE
 
 @property (nonatomic, copy) NSArray *bannerData;
 @property (nonatomic) IBInspectable NSInteger pageNumber;
+@property (nonatomic, strong) UIPageControl *pageControl;
 
 - (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData;
 @end
