@@ -20,6 +20,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 @property (nonatomic) NSInteger lastPage;
 @property (nonatomic) CGFloat lastScrollOffset;
 @property (strong, nonatomic) UIScrollView *scrollView;
+@property (nonatomic) BOOL loopOn;
 
 @end
 
@@ -67,9 +68,20 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
         [subView removeFromSuperview];
     }
 
+    if (self.bannerData.count < 3)
+    {
+        [self setupNormalImage];
+    }
+    else {
+        [self setupLoopImage];
+    }
     self.pageControl.numberOfPages = self.bannerData.count;
     self.currentPage = 0;
 
+}
+
+- (void)setupLoopImage {
+    self.loopOn = YES;
     CGFloat imageWidth = self.scrollView.frame.size.width - IMAGE_INSET;
     CGFloat imageLeft = (imageWidth + IMAGE_INSET) * 2;
     self.images = [NSMutableArray array];
@@ -103,17 +115,41 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     [self.scrollView addSubview:firstImage];
     [self.images addObject:firstImage];
 
-    UIImageView *secondImage = [[UIImageView alloc] initWithFrame:CGRectMake(firstImage.frame.origin.x + firstImage.frame.size.width + IMAGE_INSET, 0, imageWidth,self.scrollView.frame.size.height)];
+    UIImageView *secondImage = [[UIImageView alloc] initWithFrame:CGRectMake(firstImage.frame.origin.x + firstImage.frame.size.width + IMAGE_INSET, 0, imageWidth, self.scrollView.frame.size.height)];
     [secondImage setImageWithName:self.bannerData[1]];
     secondImage.contentMode = IMAGE_COTENT_MODE;
     [self.scrollView addSubview:secondImage];
     [self.images addObject:secondImage];
 
-    self.scrollView.contentSize = CGSizeMake((imageWidth + IMAGE_INSET) * (self.bannerData.count + 4),self.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake((imageWidth + IMAGE_INSET) * (self.bannerData.count + 4), self.frame.size.height);
     self.scrollView.contentOffset = CGPointMake((imageWidth + IMAGE_INSET) * 2,0);
 }
 
+- (void)setupNormalImage{
+    if (self.bannerData.count == 1) {
+        self.pageControl.hidden = YES;
+    }
+    CGFloat imageWidth = self.scrollView.frame.size.width - IMAGE_INSET;
+    CGFloat imageLeft = 0;
+    self.images = [NSMutableArray array];
+    for (NSInteger index = 0; index < self.bannerData.count; ++index) {
+        UIImageView *imageView = [UIImageView new];
+        [imageView setImageWithName:self.bannerData[index]];
+        imageView.contentMode = IMAGE_COTENT_MODE;
+        [self.scrollView addSubview:imageView];
+        imageView.frame = CGRectMake(imageLeft, 0, imageWidth, self.frame.size.height);
+        imageLeft = imageView.frame.size.width + imageView.frame.origin.x + IMAGE_INSET;
+        [self.images addObject:imageView];
+    }
+
+    self.scrollView.contentSize = CGSizeMake((imageWidth + IMAGE_INSET) * self.bannerData.count, self.frame.size.height);
+}
+
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    if (self.alpha == 0.0 || self.hidden || !self.userInteractionEnabled)
+    {
+        return nil;
+    }
     if ([self pointInside:point withEvent:event]) {
         return self.scrollView;
     }
@@ -125,14 +161,6 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     CGFloat currentScrollOffset = scrollView.contentOffset.x;
     CGFloat rightCriticalOffset = pageSize * (self.images.count - 2);
     CGFloat leftCriticalOffset = pageSize;
-    if (currentScrollOffset - self.lastScrollOffset > 0 && currentScrollOffset > rightCriticalOffset) {
-        //scroll to right
-        [scrollView scrollRectToVisible:CGRectMake(currentScrollOffset - self.bannerData.count * pageSize,0,pageSize,self.scrollView.frame.size.height) animated:NO];
-    }
-    else if (currentScrollOffset - self.lastScrollOffset < 0 && currentScrollOffset < leftCriticalOffset){
-        //scroll to left
-        [scrollView scrollRectToVisible:CGRectMake(currentScrollOffset + self.bannerData.count * pageSize, 0, pageSize, self.scrollView.frame.size.height) animated:NO];
-    }
     NSInteger currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width) - 2;
     if (currentPage < 0) {
         currentPage = self.bannerData.count - currentPage;
@@ -141,6 +169,18 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
         currentPage -= self.bannerData.count;
     }
     self.pageControl.currentPage = currentPage;
+    if (!self.loopOn) {
+        return;
+    }
+    if (currentScrollOffset - self.lastScrollOffset > 0 && currentScrollOffset > rightCriticalOffset) {
+        //scroll to right
+        [scrollView scrollRectToVisible:CGRectMake(currentScrollOffset - self.bannerData.count * pageSize,0,pageSize,self.scrollView.frame.size.height) animated:NO];
+    }
+    else if (currentScrollOffset - self.lastScrollOffset < 0 && currentScrollOffset < leftCriticalOffset){
+        //scroll to left
+        [scrollView scrollRectToVisible:CGRectMake(currentScrollOffset + self.bannerData.count * pageSize, 0, pageSize, self.scrollView.frame.size.height) animated:NO];
+    }
+    
     self.lastScrollOffset = currentScrollOffset;
 }
 
