@@ -16,4 +16,6 @@ IB_DESIGNABLE
 @property (nonatomic, strong) UIPageControl *pageControl;
 
 - (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData;
+
+- (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData withScrollViewWidth:(CGFloat)width;
 @end

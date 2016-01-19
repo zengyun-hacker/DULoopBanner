@@ -27,7 +27,8 @@
         NSString *imageName = [NSString stringWithFormat:@"banner%i",index];
         [imageNames addObject:imageName];
     }
-    DULoopBannerView *bannerView = [[DULoopBannerView alloc] initWithFrame:CGRectMake(0,100,[UIScreen mainScreen].bounds.size.width,200) withBannerData:imageNames];
+//    DULoopBannerView *bannerView = [[DULoopBannerView alloc] initWithFrame:CGRectMake(0,100,[UIScreen mainScreen].bounds.size.width,200) withBannerData:imageNames];
+    DULoopBannerView *bannerView = [[DULoopBannerView alloc] initWithFrame:CGRectMake(0,100,[UIScreen mainScreen].bounds.size.width,200) withBannerData:imageNames withScrollViewWidth:[UIScreen mainScreen].bounds.size.width / 2 + 50];
     [self.view addSubview:bannerView];
 }
 

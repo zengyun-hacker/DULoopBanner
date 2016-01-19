@@ -27,10 +27,13 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 @implementation DULoopBannerView
 
 - (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData {
+    return [self initWithFrame:frame withBannerData:bannerData withScrollViewWidth:frame.size.width / 2];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame withBannerData:(NSArray *)bannerData withScrollViewWidth:(CGFloat)width {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor lightGrayColor];
-        [self setupScrollView];
+        [self setupScrollViewWithWidth:width];
         [self setupPageControl];
         self.bannerData = bannerData;
     }
@@ -43,8 +46,8 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
     [self setupImage];
 }
 
-- (void)setupScrollView {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.frame.size.width / 4,0,self.frame.size.width / 2,self.frame.size.height)];
+- (void)setupScrollViewWithWidth:(CGFloat)width {
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake((self.frame.size.width - width) / 2, 0, width, self.frame.size.height)];
     self.scrollView.clipsToBounds = NO;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -57,6 +60,7 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 - (void)setupPageControl {
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
     self.pageControl.frame = CGRectMake(0, self.frame.size.height - self.pageControl.frame.size.height, self.pageControl.frame.size.width, self.pageControl.frame.size.height);
+    self.pageControl.hidesForSinglePage = YES;
     [self addSubview:self.pageControl];
 }
 
@@ -126,9 +130,6 @@ static UIViewContentMode const IMAGE_COTENT_MODE = UIViewContentModeScaleAspectF
 }
 
 - (void)setupNormalImage{
-    if (self.bannerData.count == 1) {
-        self.pageControl.hidden = YES;
-    }
     CGFloat imageWidth = self.scrollView.frame.size.width - IMAGE_INSET;
     CGFloat imageLeft = 0;
     self.images = [NSMutableArray array];
