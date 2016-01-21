@@ -18,7 +18,6 @@ static NSInteger const TAG_IMAGE_START = 50000;
 
 @property (nonatomic) NSMutableArray<UIImageView *> *images;
 @property (nonatomic) NSInteger currentPage;
-@property (nonatomic) NSInteger lastPage;
 @property (nonatomic) CGFloat lastScrollOffset;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (nonatomic) BOOL loopOn;
@@ -40,6 +39,7 @@ static NSInteger const TAG_IMAGE_START = 50000;
     if (self) {
         [self setupScrollViewWithWidth:width];
         [self setupPageControl];
+        self.backgroundColor = [UIColor grayColor];
         self.bannerData = bannerData;
         self.tapCallback = callback;
     }
@@ -202,7 +202,7 @@ static NSInteger const TAG_IMAGE_START = 50000;
     CGFloat currentScrollOffset = scrollView.contentOffset.x;
     CGFloat rightCriticalOffset = pageSize * (self.images.count - 2);
     CGFloat leftCriticalOffset = pageSize;
-    NSInteger currentPage = (NSInteger)(scrollView.contentOffset.x / scrollView.frame.size.width) - 2;
+    NSInteger currentPage = (NSInteger)((scrollView.contentOffset.x + (0.5f * scrollView.width)) / scrollView.frame.size.width) - 2;
     if (currentPage < 0) {
         currentPage = self.bannerData.count - currentPage;
     }
